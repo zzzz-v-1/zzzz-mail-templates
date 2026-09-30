@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
+    <title>Bestellung storniert</title>
+    <!--[if mso]>
+    <style type="text/css">
+        table {border-collapse: collapse !important;}
+        .outlook-heights-fix {mso-line-height-rule: exactly;}
+    </style>
+    <![endif]-->
+    <style type="text/css" data-premailer="ignore">
+
+        a[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+            text-transform: none !important;
+        }
+
+        /* Reset */
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #272727 !important;
+            font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        img { border: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; }
+        table { border-collapse: collapse; }
+
+        /* ── Design tokens (Figma: Email Templates / Flows) ────────────────
+           Warm Black       #272727   text, primary button
+           Warm White       #fffcf9   text on dark
+           Warm Grey Light  #f1ebe9   total row, pattern band
+           Panel            #f8f5f4   info panels, item rows (f1ebe9 @ 50%)
+           Rule             #e3dad6   dividers
+           Muted            #8f8585   labels in panels, fine print
+           Type: Inter (title/body/buttons) · DM Mono (labels/data)
+           ─────────────────────────────────────────────────────────────── */
+
+        .email-container { width: 640px; max-width: 640px; }
+
+        /* Typography helpers — also inlined on every element for Gmail/Outlook */
+        .t-title   { font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 25px; line-height: 28px; font-weight: 400; letter-spacing: 0.5px; color: #272727 !important; }
+        .t-wordmark{ font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 21px; line-height: 24px; font-weight: 700; letter-spacing: -0.63px; color: #272727 !important; }
+        .t-body    { font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 15px; line-height: 20px; font-weight: 400; letter-spacing: 0.3px; color: #272727 !important; }
+        .t-body-md { font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 15px; line-height: 20px; font-weight: 500; letter-spacing: 0.3px; color: #272727 !important; }
+        .t-label   { font-family: 'DM Mono', 'Courier New', Courier, monospace; font-size: 10px; line-height: 16px; letter-spacing: 0.3px; text-transform: uppercase; color: #272727 !important; }
+        .t-label-m { font-family: 'DM Mono', 'Courier New', Courier, monospace; font-size: 10px; line-height: 16px; letter-spacing: 0.3px; text-transform: uppercase; color: #8f8585 !important; }
+        .t-data    { font-family: 'DM Mono', 'Courier New', Courier, monospace; font-size: 15px; line-height: 20px; letter-spacing: 0.45px; color: #272727 !important; }
+        .t-data-sm { font-family: 'DM Mono', 'Courier New', Courier, monospace; font-size: 14px; line-height: 20px; letter-spacing: 0.42px; color: #272727 !important; }
+        .t-fine    { font-family: 'DM Mono', 'Courier New', Courier, monospace; font-size: 12px; line-height: 16px; letter-spacing: 0.24px; color: #8f8585 !important; }
+        .t-micro   { font-family: 'DM Mono', 'Courier New', Courier, monospace; font-size: 9px;  line-height: 12px; letter-spacing: 0.18px; color: #fffcf9 !important; }
+
+        .panel { background-color: #f8f5f4; }
+        .rule  { background-color: #e3dad6; font-size: 0; line-height: 0; height: 1px; }
+
+        /* Mobile */
+        @media screen and (max-width: 600px) {
+            body, html { width: 100% !important; }
+            .email-container { width: 100% !important; max-width: 100% !important; }
+            .stack { display: block !important; width: 100% !important; }
+            .pad-x { padding-left: 14px !important; padding-right: 14px !important; }
+            .t-title { font-size: 21px !important; line-height: 26px !important; }
+            .t-body, .t-body-md, .t-data { font-size: 14px !important; }
+            .t-data-sm { font-size: 13px !important; }
+            /* order info: 3 columns become stacked rows */
+            .info-col { display: block !important; width: 100% !important; border-left: 0 !important; padding-left: 0 !important; padding-bottom: 12px !important; }
+            /* item rows: keep image + text side by side, price under text */
+            .item-img { width: 70px !important; }
+            .item-price { text-align: left !important; padding-top: 6px !important; }
+            .btn-wrap { display: block !important; width: 100% !important; }
+            .btn-wrap td { text-align: center !important; }
+            .footer-col { display: block !important; width: 100% !important; text-align: left !important; }
+            .footer-social { padding-top: 16px !important; }
+        }
+    </style>
+</head>
+<body style="margin:0; padding:0; background-color:#ffffff;">
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff;">
+<tr>
+<td align="center" style="padding:0;">
+
+<table role="presentation" class="email-container" width="640" cellpadding="0" cellspacing="0" border="0" style="width:640px; max-width:640px; background-color:#ffffff;">
+
+    <!-- ══ Email header ══════════════════════════════════════════════ -->
+    <tr>
+        <td class="pad-x" style="padding:17px 20px 0 20px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td class="t-title" style="font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:25px; line-height:28px; font-weight:400; letter-spacing:0.5px; color:#272727 !important;" valign="middle">
+                        Bestellung storniert
+                        <span style="display:inline-block; width:18px; height:18px; vertical-align:middle; margin-left:8px;">
+                            <img src="https://www.figma.com/api/mcp/asset/a9058c03-4ce0-4f5d-ad9f-5c53da707f02.svg" width="18" height="18" alt="" style="display:block; width:18px; height:18px;">
+                        </span>
+                    </td>
+                    <td class="t-wordmark" align="right" valign="middle" style="font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:21px; line-height:24px; font-weight:700; letter-spacing:-0.63px; color:#272727 !important;">
+                        FourZed
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- ══ Greeting & intro ══════════════════════════════════════════ -->
+    <tr>
+        <td class="pad-x" style="padding:26px 20px 0 20px;">
+            <p class="t-body-md" style="margin:0 0 20px 0; font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:15px; line-height:20px; font-weight:500; letter-spacing:0.3px; color:#272727 !important;">
+                Hi Nikola,
+            </p>
+            <p class="t-body" style="margin:0; font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:15px; line-height:20px; letter-spacing:0.3px; color:#272727 !important;">
+                deine Bestellung FZ-10101618 wurde storniert. Es wurde nichts abgebucht.
+            </p>
+        </td>
+    </tr>
+
+    <!-- ══ Hinweis — Stornogrund ══════════════════════ -->
+    <tr>
+        <td class="pad-x" style="padding:26px 20px 0 20px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f8f5f4; border-left:2px solid #272727;">
+                <tr>
+                    <td width="44" valign="top" style="width:44px; padding:14px 0 14px 15px;">
+                        <img src="https://www.figma.com/api/mcp/asset/c723f2f5-5861-41cc-8059-e2b4460c1095.svg" width="18" height="18" alt="" style="display:block; width:18px; height:18px;">
+                    </td>
+                    <td valign="top" style="padding:14px 16px 14px 0;">
+                        <p style="margin:0 0 3px 0; font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:15px; line-height:20px; font-weight:500; letter-spacing:0.3px; color:#272727 !important;">
+                            Storniert am 29. Apr. 2026
+                        </p>
+                        <p style="margin:0; font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:15px; line-height:20px; letter-spacing:0.3px; color:#272727 !important;">
+                            Die Bestellung wurde automatisch storniert, weil wir deine Zahlung nicht innerhalb von 7 Tagen erhalten haben.
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- ══ Order information ═════════════════════════════════════════ -->
+    <tr>
+        <td class="pad-x" style="padding:32px 20px 0 20px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td class="info-col" width="120" valign="top" style="width:120px; padding-right:14px;">
+                        <div class="t-label" style="font-family:'DM Mono','Courier New',Courier,monospace; font-size:10px; line-height:16px; letter-spacing:0.3px; text-transform:uppercase; color:#272727 !important;">Bestellnummer</div>
+                        <div class="t-data" style="font-family:'DM Mono','Courier New',Courier,monospace; font-size:15px; line-height:20px; letter-spacing:0.45px; color:#272727 !important; padding-top:2px;">FZ-10101618</div>
+                    </td>
+                    <td class="info-col" width="215" valign="top" style="width:215px; padding-right:14px;">
+                        <div class="t-label" style="font-family:'DM Mono','Courier New',Courier,monospace; font-size:10px; line-height:16px; letter-spacing:0.3px; text-transform:uppercase; color:#272727 !important;">Bestelldatum</div>
+                        <div class="t-data" style="font-family:'DM Mono','Courier New',Courier,monospace; font-size:15px; line-height:20px; letter-spacing:0.45px; color:#272727 !important; padding-top:2px;">27. Apr. 2026</div>
+                    </td>
+                    <td class="info-col" valign="top" style="border-left:1px solid #e3dad6; padding-left:22px; padding-right:14px;">
+                        <div class="t-label" style="font-family:'DM Mono','Courier New',Courier,monospace; font-size:10px; line-height:16px; letter-spacing:0.3px; text-transform:uppercase; color:#272727 !important;">Storniert am</div>
+                        <div class="t-data" style="font-family:'DM Mono','Courier New',Courier,monospace; font-size:15px; line-height:20px; letter-spacing:0.45px; color:#272727 !important; padding-top:2px;">
+                            29. Apr. 2026
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class="rule" style="background-color:#e3dad6; height:1px; line-height:1px; font-size:0; margin-top:14px;">&nbsp;</div>
+        </td>
+    </tr>
+
+    <!-- ══ Product / item rows ═══════════════════════════════════════ -->
+    <tr>
+        <td class="pad-x" style="padding:26px 20px 0 20px;">
+            <div class="t-label" style="font-family:'DM Mono','Courier New',Courier,monospace; font-size:10px; line-height:16px; letter-spacing:0.3px; text-transform:uppercase; color:#272727 !important; padding-bottom:8px;">Stornierte Artikel</div>
+
+            
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="panel" style="background-color:#f8f5f4; margin-bottom:2px;">
+                <tr>
+                    <td class="item-img" width="122" valign="middle" align="center" style="width:122px; padding:16px 0 16px 18px;">
+                        
+                        <img src="https://www.figma.com/api/mcp/asset/c29bfe7e-23b7-414d-adda-9ff9e984073a.png" width="86" alt="FourZed Shirt Long" style="display:block; width:86px; height:auto;">
+                        
+                    </td>
+                    <td valign="middle" style="padding:16px 12px;">
+                        <div class="t-body" style="font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:15px; line-height:18px; letter-spacing:0.45px; color:#272727 !important;">
+                            FourZed Shirt Long
+                            
+                                
+                                    <br>Womens Midnight Black
+                                
+                                    <br>Size L
+                                
+                            
+                        </div>
+                    </td>
+                    <td class="item-price" valign="middle" align="right" style="padding:16px 18px 16px 0; font-family:'DM Mono','Courier New',Courier,monospace; font-size:15px; line-height:18px; letter-spacing:0.45px; color:#272727 !important; white-space:nowrap;">
+                        2 × 40,00 €
+                    </td>
+                </tr>
+            </table>
+            
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="panel" style="background-color:#f8f5f4; margin-bottom:2px;">
+                <tr>
+                    <td class="item-img" width="122" valign="middle" align="center" style="width:122px; padding:16px 0 16px 18px;">
+                        
+                        <img src="https://www.figma.com/api/mcp/asset/c29bfe7e-23b7-414d-adda-9ff9e984073a.png" width="86" alt="FourZed Shirt Long" style="display:block; width:86px; height:auto;">
+                        
+                    </td>
+                    <td valign="middle" style="padding:16px 12px;">
+                        <div class="t-body" style="font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:15px; line-height:18px; letter-spacing:0.45px; color:#272727 !important;">
+                            FourZed Shirt Long
+                            
+                                
+                                    <br>Womens Midnight Black
+                                
+                                    <br>Size L
+                                
+                            
+                        </div>
+                    </td>
+                    <td class="item-price" valign="middle" align="right" style="padding:16px 18px 16px 0; font-family:'DM Mono','Courier New',Courier,monospace; font-size:15px; line-height:18px; letter-spacing:0.45px; color:#272727 !important; white-space:nowrap;">
+                        2 × 40,00 €
+                    </td>
+                </tr>
+            </table>
+            
+        </td>
+    </tr>
+
+    <!-- ══ Price summary ═════════════════════════════════════════════ -->
+    <tr>
+        <td class="pad-x" style="padding:26px 20px 0 20px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="panel" style="background-color:#f8f5f4;">
+                <tr>
+                    <td class="t-label" style="padding:11px 0 11px 18px; font-family:'DM Mono','Courier New',Courier,monospace; font-size:10px; line-height:16px; letter-spacing:0.3px; text-transform:uppercase; color:#272727 !important;">Bestellwert</td>
+                    <td class="t-data" align="right" style="padding:11px 18px 11px 0; font-family:'DM Mono','Courier New',Courier,monospace; font-size:15px; line-height:20px; letter-spacing:0.45px; color:#272727 !important;">109,00 €</td>
+                </tr>
+                <tr>
+                    
+                    <td style="background-color:#f1ebe9; padding:10px 0 10px 18px; font-family:'DM Mono','Courier New',Courier,monospace; font-size:15px; line-height:20px; letter-spacing:0.45px; text-transform:uppercase; color:#272727 !important;">Abgebucht</td>
+                    <td align="right" style="background-color:#f1ebe9; padding:10px 18px 10px 0; font-family:'DM Mono','Courier New',Courier,monospace; font-size:15px; line-height:20px; letter-spacing:0.45px; color:#272727 !important;">0,00 €</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- ══ CTA row ═══════════════════════════════════════════════════ -->
+    <tr>
+        <td class="pad-x" style="padding:26px 20px 0 20px;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td class="btn-wrap" style="background-color:#272727; border-radius:18px; height:47px;">
+                        <a href="https://www.fourzed.com" target="_blank" style="display:inline-block; padding:12px 26px; font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:16px; line-height:22px; font-weight:500; letter-spacing:0.32px; color:#fffcf9 !important; text-decoration:none;">Weiter shoppen</a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- ══ Body copy & sign-off ══════════════════════════════════════ -->
+    <tr>
+        <td class="pad-x" style="padding:26px 20px 0 20px;">
+            <p class="t-body" style="margin:0 0 20px 0; font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:15px; line-height:20px; letter-spacing:0.3px; color:#272727 !important;">
+                Doch nicht stornieren wollen? Die Artikel sind weiterhin verfügbar – bestell einfach neu.
+            </p>
+            <p class="t-body" style="margin:0; font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:15px; line-height:20px; letter-spacing:0.3px; color:#272727 !important;">
+                Träum schön, dein FourZed Team
+            </p>
+        </td>
+    </tr>
+
+    <!-- ══ Rule ══════════════════════════════════════════════════════ -->
+    <tr>
+        <td class="pad-x" style="padding:44px 20px 0 20px;">
+            <div class="rule" style="background-color:#e3dad6; height:1px; line-height:1px; font-size:0;">&nbsp;</div>
+        </td>
+    </tr>
+
+    <!-- ══ Footer ════════════════════════════════════════════════════ -->
+    <tr>
+        <td class="pad-x" style="padding:15px 20px 0 20px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td class="footer-col t-fine" width="392" valign="bottom" style="width:392px; font-family:'DM Mono','Courier New',Courier,monospace; font-size:12px; line-height:16px; letter-spacing:0.24px; color:#8f8585 !important;">
+                        Diese E-Mail wurde an kunde@example.com gesendet, weil du bei uns bestellt hast. Falls du das nicht warst, ignoriere sie einfach.
+                        <br><br>
+                        2026 FourZed.com,<br>
+                        Infanteriestraße 11, 80000 München
+                    </td>
+                    <td class="footer-col footer-social" align="right" valign="bottom">
+                        <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="right">
+                            <tr>
+                                <td width="24" style="width:24px;">
+                                    <a href="https://www.instagram.com/fourzed/" target="_blank"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIGZpbGw9IiMyNzI3MjciLz48dGV4dCB4PSIxMiIgeT0iMTUuNSIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSI5IiBmaWxsPSIjZmZmY2Y5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5JRzwvdGV4dD48L3N2Zz4=" width="24" height="24" alt="Instagram" style="display:block; width:24px; height:24px;"></a>
+                                </td>
+                                <td width="13" style="width:13px;">&nbsp;</td>
+                                <td width="24" style="width:24px;">
+                                    <a href="https://www.facebook.com/fourzed/" target="_blank"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIGZpbGw9IiMyNzI3MjciLz48dGV4dCB4PSIxMiIgeT0iMTUuNSIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSI5IiBmaWxsPSIjZmZmY2Y5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5GQjwvdGV4dD48L3N2Zz4=" width="24" height="24" alt="Facebook" style="display:block; width:24px; height:24px;"></a>
+                                </td>
+                                <td width="13" style="width:13px;">&nbsp;</td>
+                                <td width="24" style="width:24px;">
+                                    <a href="https://www.linkedin.com/company/fourzed/" target="_blank"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIGZpbGw9IiMyNzI3MjciLz48dGV4dCB4PSIxMiIgeT0iMTUuNSIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSI5IiBmaWxsPSIjZmZmY2Y5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5JTjwvdGV4dD48L3N2Zz4=" width="24" height="24" alt="LinkedIn" style="display:block; width:24px; height:24px;"></a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- ══ Pattern band ══════════════════════════════════════════════ -->
+    <tr>
+        <td style="padding:34px 0 0 0;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" background="https://www.figma.com/api/mcp/asset/4141f52a-e19f-418a-b07c-4aef34d6abaa.png" style="background-color:#f8f5f4; background-image:url('https://www.figma.com/api/mcp/asset/4141f52a-e19f-418a-b07c-4aef34d6abaa.png'); background-size:cover; background-position:center;">
+                <tr>
+                    <td align="center" valign="middle" style="padding:150px 0 0 0;">
+                        <img src="https://www.figma.com/api/mcp/asset/78288972-7db6-4c01-a26f-19537c0011e3.svg" width="81" alt="FourZed" style="display:block; width:81px; height:auto; margin:0 auto;">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding:60px 0 40px 0;">
+                        <a href="https://www.fourzed.com/terms" class="t-fine" style="font-family:'DM Mono','Courier New',Courier,monospace; font-size:12px; line-height:16px; letter-spacing:0.24px; color:#8f8585 !important; text-decoration:none;">AGB</a>
+                        <span style="display:inline-block; width:24px;">&nbsp;</span>
+                        <a href="https://www.fourzed.com/privacy" class="t-fine" style="font-family:'DM Mono','Courier New',Courier,monospace; font-size:12px; line-height:16px; letter-spacing:0.24px; color:#8f8585 !important; text-decoration:none;">DATENSCHUTZ</a>
+                        <span style="display:inline-block; width:24px;">&nbsp;</span>
+                        <a href="https://www.fourzed.com/cookies" class="t-fine" style="font-family:'DM Mono','Courier New',Courier,monospace; font-size:12px; line-height:16px; letter-spacing:0.24px; color:#8f8585 !important; text-decoration:none;">COOKIES</a>
+                        <span style="display:inline-block; width:24px;">&nbsp;</span>
+                        <a href="mailto:hello@fourzed.com" class="t-fine" style="font-family:'DM Mono','Courier New',Courier,monospace; font-size:12px; line-height:16px; letter-spacing:0.24px; color:#8f8585 !important; text-decoration:none;">KONTAKT</a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+</table>
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>

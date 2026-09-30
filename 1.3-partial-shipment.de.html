@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
+    <title>Ein Teil deiner Bestellung ist unterwegs</title>
+    <!--[if mso]>
+    <style type="text/css">
+        table {border-collapse: collapse !important;}
+        .outlook-heights-fix {mso-line-height-rule: exactly;}
+    </style>
+    <![endif]-->
+    <style type="text/css" data-premailer="ignore">
+
+        a[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+            text-transform: none !important;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #272727 !important;
+            font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        img { border: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; }
+        table { border-collapse: collapse; }
+
+        /* ── Design tokens (Figma: Email Templates & Flows, 1.2) ───────────
+           Warm Black #272727 · Warm White #fffcf9 · Warm Grey Light #f1ebe9
+           Panel #f8f5f4 · Rule #e3dad6 · Muted #8f8585
+           Type: Inter (title/body/buttons) · DM Mono (labels/data)
+           ─────────────────────────────────────────────────────────────── */
+
+        .email-container { width: 640px; max-width: 640px; }
+
+        .t-title   { font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 25px; line-height: 28px; font-weight: 400; letter-spacing: 0.5px; color: #272727 !important; }
+        .t-wordmark{ font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 21px; line-height: 24px; font-weight: 700; letter-spacing: -0.63px; color: #272727 !important; }
+        .t-body    { font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 15px; line-height: 20px; font-weight: 400; letter-spacing: 0.3px; color: #272727 !important; }
+        .t-body-md { font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 15px; line-height: 20px; font-weight: 500; letter-spacing: 0.3px; color: #272727 !important; }
+        .t-label   { font-family: 'DM Mono', 'Courier New', Courier, monospace; font-size: 10px; line-height: 16px; letter-spacing: 0.3px; text-transform: uppercase; color: #272727 !important; }
+        .t-label-m { font-family: 'DM Mono', 'Courier New', Courier, monospace; font-size: 10px; line-height: 16px; letter-spacing: 0.3px; text-transform: uppercase; color: #8f8585 !important; }
+        .t-data    { font-family: 'DM Mono', 'Courier New', Courier, monospace; font-size: 15px; line-height: 20px; letter-spacing: 0.45px; color: #272727 !important; }
+        .t-data-sm { font-family: 'DM Mono', 'Courier New', Courier, monospace; font-size: 14px; line-height: 20px; letter-spacing: 0.42px; color: #272727 !important; }
+        .t-fine    { font-family: 'DM Mono', 'Courier New', Courier, monospace; font-size: 12px; line-height: 16px; letter-spacing: 0.24px; color: #8f8585 !important; }
+
+        .panel { background-color: #f8f5f4; }
+        .rule  { background-color: #e3dad6; font-size: 0; line-height: 0; height: 1px; }
+
+        @media screen and (max-width: 600px) {
+            body, html { width: 100% !important; }
+            .email-container { width: 100% !important; max-width: 100% !important; }
+            .pad-x { padding-left: 14px !important; padding-right: 14px !important; }
+            .t-title { font-size: 21px !important; line-height: 26px !important; }
+            .t-body, .t-body-md, .t-data { font-size: 14px !important; }
+            .t-data-sm { font-size: 13px !important; }
+            .info-col { display: block !important; width: 100% !important; border-left: 0 !important; padding-left: 0 !important; padding-bottom: 12px !important; }
+            .item-img { width: 70px !important; }
+            .item-price { text-align: left !important; padding-top: 6px !important; }
+            .btn-wrap { display: block !important; width: 100% !important; }
+            .btn-wrap td { text-align: center !important; }
+            .footer-col { display: block !important; width: 100% !important; text-align: left !important; }
+            .footer-social { padding-top: 16px !important; }
+            /* 20-digit tracking numbers must wrap instead of stretching the panel */
+            .data-wrap { white-space: normal !important; word-break: break-all !important; }
+        }
+    </style>
+</head>
+<body style="margin:0; padding:0; background-color:#ffffff;">
+
+{# ═══ Shopware mail template: PARTIAL SHIPMENT ════════════════════════════
+   Figma: 1.3  Partial Shipment  [DEFAULT]
+   Trigger: order_delivery.state.shipped on an order with several deliveries
+   Carries the Karla tracking link for THIS parcel only. #}
+
+{# ── Config: set once per sales channel ───────────────────────────────── #}
+{% set shopUrl      = 'https://www.fourzed.com' %}
+{% set shopName     = 'FourZed' %}
+{% set supportMail  = 'hello@fourzed.com' %}
+{% set igUrl        = 'https://www.instagram.com/fourzed/' %}
+{% set fbUrl        = 'https://www.facebook.com/fourzed/' %}
+{% set inUrl        = 'https://www.linkedin.com/company/fourzed/' %}
+{% set termsUrl     = shopUrl ~ '/terms' %}
+{% set policyUrl    = shopUrl ~ '/privacy' %}
+{% set cookiesUrl   = shopUrl ~ '/cookies' %}
+
+{# TODO assets — export from Figma, upload to Shopware media, then repoint.
+   All PNG (SVG is not rendered by Outlook / Gmail):
+   · fz_pattern_band.png      640×298, pattern flattened at 20% over #f1ebe9
+   · fz_wordmark_zzzz.png     81×25 ZZZZ wordmark, warm white on transparent
+   · fz_icon_truck.png        18×18 parcel/truck glyph, #272727
+   · fz_icon_info.png         18×18 info glyph, #272727
+   · fz_icon_instagram.png    24×24 white glyph on #272727 circle
+   · fz_icon_facebook.png     24×24 white glyph on #272727 circle
+   · fz_icon_linkedin.png     24×24 white glyph on #272727 circle #}
+{% set assetBase    = shopUrl ~ '/media/email' %}
+
+{% set delivery        = order.deliveries.first %}
+{% set shippingAddress = delivery.shippingOrderAddress %}
+{% set orderLink       = shopUrl ~ '/account/order' %}
+
+{# ── Shipment counters ─────────────────────────────────────────────────
+   shipmentNumber = how many deliveries are already shipped (this one included),
+   deliveryCount  = how many parcels the order has in total. #}
+{% set deliveryCount   = order.deliveries|length %}
+{% set shipmentNumber  = order.deliveries|filter(d => d.stateMachineState.technicalName == 'shipped')|length %}
+{% set remainingCount  = deliveryCount - shipmentNumber %}
+
+{# ── Karla tracking link ───────────────────────────────────────────────
+   Same pattern as the Schlafgut template. Order number + zip code are all
+   Karla needs to resolve the parcel and show its live status — no carrier
+   tracking code required. ref=karla stays so the tool can be measured. #}
+{% set trackingLink = shopUrl ~ '/tracking/?orderNumber=' ~ order.orderNumber
+                      ~ '&zipCode=' ~ shippingAddress.zipcode ~ '&ref=karla' %}
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff;">
+<tr>
+<td align="center" style="padding:0;">
+
+<table role="presentation" class="email-container" width="640" cellpadding="0" cellspacing="0" border="0" style="width:640px; max-width:640px; background-color:#ffffff;">
+
+    <!-- ══ Email header ══════════════════════════════════════════════ -->
+    <tr>
+        <td class="pad-x" style="padding:17px 20px 0 20px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td class="t-title" style="font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:25px; line-height:28px; font-weight:400; letter-spacing:0.5px; color:#272727 !important;" valign="middle">
+                        Ein Teil deiner Bestellung ist unterwegs
+                        <span style="display:inline-block; width:18px; height:18px; vertical-align:middle; margin-left:8px;">
+                            <img src="{{ assetBase }}/fz_icon_truck.png" width="18" height="18" alt="" style="display:block; width:18px; height:18px;">
+                        </span>
+                    </td>
+                    <td class="t-wordmark" align="right" valign="middle" style="font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:21px; line-height:24px; font-weight:700; letter-spacing:-0.63px; color:#272727 !important;">
+                        {{ shopName }}
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- ══ Greeting & intro ══════════════════════════════════════════ -->
+    <tr>
+        <td class="pad-x" style="padding:26px 20px 0 20px;">
+            <p class="t-body-md" style="margin:0 0 20px 0; font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:15px; line-height:20px; font-weight:500; letter-spacing:0.3px; color:#272727 !important;">
+                Hi {{ order.orderCustomer.firstName }},
+            </p>
+            <p class="t-body" style="margin:0; font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:15px; line-height:20px; letter-spacing:0.3px; color:#272727 !important;">
+                der erste Teil deiner Bestellung hat unser Lager verlassen.<br>
+                {% if remainingCount > 1 %}Die restlichen Artikel folgen{% else %}Der restliche Artikel folgt{% endif %} separat – dafür bekommst du eine zweite Versandbestätigung.
+            </p>
+        </td>
+    </tr>
+
+    <!-- ══ Order information ═════════════════════════════════════════ -->
+    <tr>
+        <td class="pad-x" style="padding:32px 20px 0 20px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td class="info-col" width="120" valign="top" style="width:120px; padding-right:14px;">
+                        <div class="t-label" style="font-family:'DM Mono','Courier New',Courier,monospace; font-size:10px; line-height:16px; letter-spacing:0.3px; text-transform:uppercase; color:#272727 !important;">Bestellnummer</div>
+                        <div class="t-data" style="font-family:'DM Mono','Courier New',Courier,monospace; font-size:15px; line-height:20px; letter-spacing:0.45px; color:#272727 !important; padding-top:2px;">{{ order.orderNumber }}</div>
+                    </td>
+                    <td class="info-col" width="215" valign="top" style="width:215px; padding-right:14px;">
+                        <div class="t-label" style="font-family:'DM Mono','Courier New',Courier,monospace; font-size:10px; line-height:16px; letter-spacing:0.3px; text-transform:uppercase; color:#272727 !important;">Versendet am</div>
+                        <div class="t-data" style="font-family:'DM Mono','Courier New',Courier,monospace; font-size:15px; line-height:20px; letter-spacing:0.45px; color:#272727 !important; padding-top:2px;">{{ "now"|format_datetime('medium', 'none', locale='de-DE') }}</div>
+                    </td>
+                    <td class="info-col" valign="top" style="border-left:1px solid #e3dad6; padding-left:22px; padding-right:14px;">
+                        <div class="t-label" style="font-family:'DM Mono','Courier New',Courier,monospace; font-size:10px; line-height:16px; letter-spacing:0.3px; text-transform:uppercase; color:#272727 !important;">Sendung</div>
+                        <div class="t-data" style="font-family:'DM Mono','Courier New',Courier,monospace; font-size:15px; line-height:20px; letter-spacing:0.45px; color:#272727 !important; padding-top:2px;">
+                            {{ shipmentNumber }} von {{ deliveryCount }}
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class="rule" style="background-color:#e3dad6; height:1px; line-height:1px; font-size:0; margin-top:14px;">&nbsp;</div>
+        </td>
+    </tr>
+
+    <!-- ══ Sendungsverfolgung ══════════════════════════════════════ -->
+    <tr>
+        <td class="pad-x" style="padding:26px 20px 0 20px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="panel" style="background-color:#f8f5f4;">
+                <tr>
+                    <td colspan="2" class="t-label" style="padding:16px 18px 10px 18px; font-family:'DM Mono','Courier New',Courier,monospace; font-size:10px; line-height:16px; letter-spacing:0.3px; text-transform:uppercase; color:#272727 !important;">Sendungsverfolgung</td>
+                </tr>
+                <tr>
+                    <td class="t-label-m" valign="top" style="padding:0 0 7px 18px; font-family:'DM Mono','Courier New',Courier,monospace; font-size:10px; line-height:16px; letter-spacing:0.3px; text-transform:uppercase; color:#8f8585 !important;">Versanddienstleister</td>
+                    <td class="t-data-sm" align="right" style="padding:0 18px 7px 0; font-family:'DM Mono','Courier New',Courier,monospace; font-size:14px; line-height:20px; letter-spacing:0.42px; color:#272727 !important;">
+                        {% if delivery.shippingMethod.translated.name is defined %}{{ delivery.shippingMethod.translated.name }}{% else %}Standard{% endif %}
+                    </td>
+                </tr>
+                {# No carrier tracking number here on purpose — the Karla link resolves
+                   the parcel from order number + zip code and shows the live status. #}
+                <tr>
+                    {# Figma shows live carrier status ("In transit · Leipzig hub"). Shopware does not
+                       have that at send time — this renders the delivery state instead. #}
+                    <td class="t-label-m" valign="top" style="padding:0 0 7px 18px; font-family:'DM Mono','Courier New',Courier,monospace; font-size:10px; line-height:16px; letter-spacing:0.3px; text-transform:uppercase; color:#8f8585 !important;">Status</td>
+                    <td class="t-data-sm" align="right" style="padding:0 18px 7px 0; font-family:'DM Mono','Courier New',Courier,monospace; font-size:14px; line-height:20px; letter-spacing:0.42px; color:#272727 !important;">
+                        {% if delivery.stateMachineState.translated.name is defined %}{{ delivery.stateMachineState.translated.name }}{% else %}Unterwegs{% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="t-label-m" valign="top" style="padding:0 0 16px 18px; font-family:'DM Mono','Courier New',Courier,monospace; font-size:10px; line-height:16px; letter-spacing:0.3px; text-transform:uppercase; color:#8f8585 !important;">Lieferung</td>
+                    <td class="t-data-sm" align="right" style="padding:0 18px 16px 0; font-family:'DM Mono','Courier New',Courier,monospace; font-size:14px; line-height:20px; letter-spacing:0.42px; color:#272727 !important;">
+                        {% if delivery.shippingDateEarliest is defined and delivery.shippingDateEarliest %}
+                            {{ delivery.shippingDateEarliest|format_datetime('medium', 'none', locale='de-DE') }} – {{ delivery.shippingDateLatest|format_datetime('medium', 'none', locale='de-DE') }}
+                        {% else %}
+                            Innerhalb von 2 Werktagen
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- ══ CTA row ═══════════════════════════════════════════════════ -->
+    <tr>
+        <td class="pad-x" style="padding:26px 20px 0 20px;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td class="btn-wrap" style="background-color:#272727; border-radius:18px; height:47px;">
+                        <a href="{{ trackingLink }}" target="_blank" style="display:inline-block; padding:12px 26px; font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:16px; line-height:22px; font-weight:500; letter-spacing:0.32px; color:#fffcf9 !important; text-decoration:none;">Sendung verfolgen</a>
+                    </td>
+                    <td width="13" style="width:13px;">&nbsp;</td>
+                    <td class="btn-wrap" style="border:1px solid #272727; border-radius:18px; height:47px;">
+                        <a href="{{ orderLink }}" target="_blank" style="display:inline-block; padding:12px 26px; font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:16px; line-height:22px; font-weight:400; letter-spacing:0.32px; color:#272727 !important; text-decoration:none;">Bestellung ansehen</a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- ══ Artikel in dieser Sendung ════════════════════════════════════ -->
+    <tr>
+        <td class="pad-x" style="padding:26px 20px 0 20px;">
+            <div class="t-label" style="font-family:'DM Mono','Courier New',Courier,monospace; font-size:10px; line-height:16px; letter-spacing:0.3px; text-transform:uppercase; color:#272727 !important; padding-bottom:8px;">Artikel in dieser Sendung</div>
+
+            {# Delivery positions are the truth for what is actually in the parcel.
+               Fall back to the full order when positions are not populated. #}
+            {% if delivery.positions is defined and delivery.positions|length > 0 %}
+                {% for position in delivery.positions %}
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="panel" style="background-color:#f8f5f4; margin-bottom:2px;">
+                    <tr>
+                        <td class="item-img" width="122" valign="middle" align="center" style="width:122px; padding:16px 0 16px 18px;">
+                            {% if position.orderLineItem.cover %}
+                            <img src="{{ position.orderLineItem.cover.url }}" width="86" alt="{{ position.orderLineItem.label }}" style="display:block; width:86px; height:auto;">
+                            {% endif %}
+                        </td>
+                        <td valign="middle" style="padding:16px 12px;">
+                            <div class="t-body" style="font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:15px; line-height:18px; letter-spacing:0.45px; color:#272727 !important;">
+                                {{ position.orderLineItem.label }}
+                                {% if position.orderLineItem.payload.options is defined and position.orderLineItem.payload.options|length > 0 %}
+                                    {% for option in position.orderLineItem.payload.options %}
+                                        <br>{{ option.option }}
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </td>
+                        <td class="item-price" valign="middle" align="right" style="padding:16px 18px 16px 0; font-family:'DM Mono','Courier New',Courier,monospace; font-size:15px; line-height:18px; letter-spacing:0.45px; color:#272727 !important; white-space:nowrap;">
+                            {{ position.quantity }} × {{ position.orderLineItem.unitPrice|number_format(2, ',', '.') }} €
+                        </td>
+                    </tr>
+                </table>
+                {% endfor %}
+            {% else %}
+                {% for lineItem in order.lineItems %}
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="panel" style="background-color:#f8f5f4; margin-bottom:2px;">
+                    <tr>
+                        <td class="item-img" width="122" valign="middle" align="center" style="width:122px; padding:16px 0 16px 18px;">
+                            {% if lineItem.cover %}
+                            <img src="{{ lineItem.cover.url }}" width="86" alt="{{ lineItem.label }}" style="display:block; width:86px; height:auto;">
+                            {% endif %}
+                        </td>
+                        <td valign="middle" style="padding:16px 12px;">
+                            <div class="t-body" style="font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:15px; line-height:18px; letter-spacing:0.45px; color:#272727 !important;">
+                                {{ lineItem.label }}
+                                {% if lineItem.payload.options is defined and lineItem.payload.options|length > 0 %}
+                                    {% for option in lineItem.payload.options %}
+                                        <br>{{ option.option }}
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </td>
+                        <td class="item-price" valign="middle" align="right" style="padding:16px 18px 16px 0; font-family:'DM Mono','Courier New',Courier,monospace; font-size:15px; line-height:18px; letter-spacing:0.45px; color:#272727 !important; white-space:nowrap;">
+                            {{ lineItem.quantity }} × {{ lineItem.unitPrice|number_format(2, ',', '.') }} €
+                        </td>
+                    </tr>
+                </table>
+                {% endfor %}
+            {% endif %}
+        </td>
+    </tr>
+
+    <!-- ══ Hinweis — Teillieferung ════════════════════════════ -->
+    <tr>
+        <td class="pad-x" style="padding:26px 20px 0 20px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f8f5f4; border-left:2px solid #272727;">
+                <tr>
+                    <td width="44" valign="top" style="width:44px; padding:14px 0 14px 15px;">
+                        <img src="{{ assetBase }}/fz_icon_info.png" width="18" height="18" alt="" style="display:block; width:18px; height:18px;">
+                    </td>
+                    <td valign="top" style="padding:14px 16px 14px 0;">
+                        <p style="margin:0 0 3px 0; font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:15px; line-height:20px; font-weight:500; letter-spacing:0.3px; color:#272727 !important;">
+                            Keine zusätzlichen Versandkosten
+                        </p>
+                        <p style="margin:0; font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:15px; line-height:20px; letter-spacing:0.3px; color:#272727 !important;">
+                            Eine Teillieferung kostet dich nie extra – Versand wird einmal pro Bestellung berechnet.
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- ══ Address block ═════════════════════════════════════════════ -->
+    <tr>
+        <td class="pad-x" style="padding:26px 20px 0 20px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="panel" style="background-color:#f8f5f4;">
+                <tr>
+                    <td style="padding:16px 18px;">
+                        <div class="t-label" style="font-family:'DM Mono','Courier New',Courier,monospace; font-size:10px; line-height:16px; letter-spacing:0.3px; text-transform:uppercase; color:#272727 !important; padding-bottom:10px;">Lieferadresse</div>
+                        <div class="t-body-md" style="font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:15px; line-height:20px; font-weight:500; letter-spacing:0.3px; color:#272727 !important;">
+                            {{ shippingAddress.firstName }} {{ shippingAddress.lastName }}
+                        </div>
+                        <div class="t-body" style="font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:15px; line-height:20px; letter-spacing:0.3px; color:#272727 !important;">
+                            {% if shippingAddress.company %}{{ shippingAddress.company }}<br>{% endif %}
+                            {{ shippingAddress.street }}<br>
+                            {{ shippingAddress.zipcode }} {{ shippingAddress.city }}<br>
+                            {{ shippingAddress.country.translated.name }}
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- ══ Body copy & sign-off ══════════════════════════════════════ -->
+    <tr>
+        <td class="pad-x" style="padding:26px 20px 0 20px;">
+            <p class="t-body" style="margin:0 0 20px 0; font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:15px; line-height:20px; letter-spacing:0.3px; color:#272727 !important;">
+                Nicht zu Hause? Du kannst das Paket umleiten oder eine DHL Packstation wählen – direkt über die <a href="{{ trackingLink }}" style="color:#272727 !important; text-decoration:underline;">Sendungsverfolgung</a>.
+            </p>
+            <p class="t-body" style="margin:0; font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:15px; line-height:20px; letter-spacing:0.3px; color:#272727 !important;">
+                Träum schön, dein {{ shopName }} Team
+            </p>
+        </td>
+    </tr>
+
+    <!-- ══ Rule ══════════════════════════════════════════════════════ -->
+    <tr>
+        <td class="pad-x" style="padding:44px 20px 0 20px;">
+            <div class="rule" style="background-color:#e3dad6; height:1px; line-height:1px; font-size:0;">&nbsp;</div>
+        </td>
+    </tr>
+
+    <!-- ══ Footer ════════════════════════════════════════════════════ -->
+    <tr>
+        <td class="pad-x" style="padding:15px 20px 0 20px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td class="footer-col t-fine" width="392" valign="bottom" style="width:392px; font-family:'DM Mono','Courier New',Courier,monospace; font-size:12px; line-height:16px; letter-spacing:0.24px; color:#8f8585 !important;">
+                        Diese E-Mail wurde an {{ order.orderCustomer.email }} gesendet, weil du bei uns bestellt hast. Falls du das nicht warst, ignoriere sie einfach.
+                        <br><br>
+                        {{ "now"|date("Y") }} {{ shopName }}.com,<br>
+                        Infanteriestraße 11, 80000 München
+                    </td>
+                    <td class="footer-col footer-social" align="right" valign="bottom">
+                        <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="right">
+                            <tr>
+                                <td width="24" style="width:24px;">
+                                    <a href="{{ igUrl }}" target="_blank"><img src="{{ assetBase }}/fz_icon_instagram.png" width="24" height="24" alt="Instagram" style="display:block; width:24px; height:24px;"></a>
+                                </td>
+                                <td width="13" style="width:13px;">&nbsp;</td>
+                                <td width="24" style="width:24px;">
+                                    <a href="{{ fbUrl }}" target="_blank"><img src="{{ assetBase }}/fz_icon_facebook.png" width="24" height="24" alt="Facebook" style="display:block; width:24px; height:24px;"></a>
+                                </td>
+                                <td width="13" style="width:13px;">&nbsp;</td>
+                                <td width="24" style="width:24px;">
+                                    <a href="{{ inUrl }}" target="_blank"><img src="{{ assetBase }}/fz_icon_linkedin.png" width="24" height="24" alt="LinkedIn" style="display:block; width:24px; height:24px;"></a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- ══ Pattern band ══════════════════════════════════════════════ -->
+    <tr>
+        <td style="padding:34px 0 0 0;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" background="{{ assetBase }}/fz_pattern_band.png" style="background-color:#f8f5f4; background-image:url('{{ assetBase }}/fz_pattern_band.png'); background-size:cover; background-position:center;">
+                <tr>
+                    <td align="center" valign="middle" style="padding:150px 0 0 0;">
+                        <img src="{{ assetBase }}/fz_wordmark_zzzz.png" width="81" alt="{{ shopName }}" style="display:block; width:81px; height:auto; margin:0 auto;">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding:60px 0 40px 0;">
+                        <a href="{{ termsUrl }}" class="t-fine" style="font-family:'DM Mono','Courier New',Courier,monospace; font-size:12px; line-height:16px; letter-spacing:0.24px; color:#8f8585 !important; text-decoration:none;">AGB</a>
+                        <span style="display:inline-block; width:24px;">&nbsp;</span>
+                        <a href="{{ policyUrl }}" class="t-fine" style="font-family:'DM Mono','Courier New',Courier,monospace; font-size:12px; line-height:16px; letter-spacing:0.24px; color:#8f8585 !important; text-decoration:none;">DATENSCHUTZ</a>
+                        <span style="display:inline-block; width:24px;">&nbsp;</span>
+                        <a href="{{ cookiesUrl }}" class="t-fine" style="font-family:'DM Mono','Courier New',Courier,monospace; font-size:12px; line-height:16px; letter-spacing:0.24px; color:#8f8585 !important; text-decoration:none;">COOKIES</a>
+                        <span style="display:inline-block; width:24px;">&nbsp;</span>
+                        <a href="mailto:{{ supportMail }}" class="t-fine" style="font-family:'DM Mono','Courier New',Courier,monospace; font-size:12px; line-height:16px; letter-spacing:0.24px; color:#8f8585 !important; text-decoration:none;">KONTAKT</a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+</table>
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>
